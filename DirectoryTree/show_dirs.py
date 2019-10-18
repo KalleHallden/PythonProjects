@@ -38,7 +38,7 @@ def go_through_list(list_, index, num):
     if len(num) == 2:
         final_list.append(str(list_[index]))
     else:
-        final_list.append(num + str(list_[index]))
+        final_list.append(num + " " + str(list_[index]))
     if index == 0:
         recursive_tree(list_[index], num)
         return 
