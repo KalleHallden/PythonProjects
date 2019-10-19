@@ -4,7 +4,6 @@ import base64
 import imageio
 import cv2
 
-# pip install imageio, pip install opencv-python
 # /Users/kalle/Desktop/myfile.py
 PASSWORD = "123456"
 

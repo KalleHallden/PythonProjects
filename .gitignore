@@ -1,3 +1,4 @@
+.vscode/
 /Database/mysafe.db
 *.pyc
 /venv
