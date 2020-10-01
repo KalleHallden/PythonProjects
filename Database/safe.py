@@ -5,7 +5,7 @@ import imageio
 import cv2
 
 # /Users/kalle/Desktop/myfile.py
-PASSWORD = "123456"
+PASSWORD = "xxx"
 
 connect = raw_input("What is your password?\n")
 
@@ -22,7 +22,7 @@ if connect == PASSWORD:
             NAME TEXT NOT NULL,
             EXTENSION TEXT NOT NULL,
             FILES TEXT NOT NULL);''')
-        print("Your safe has been created!\nWhat would you like to store in it today?")
+        print("Your safe has been created.\nWhat would you like to store in it today?")
     except:
         print("You have a safe, what would you like to do today?")
     
