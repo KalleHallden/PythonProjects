@@ -1,4 +1,4 @@
-
+BASIC DETAILS ABOUT THE PROJECT
 
 requirements for Database project:
 packages: 
