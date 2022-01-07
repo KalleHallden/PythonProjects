@@ -13,7 +13,7 @@ while connect != ADMIN_PASSWORD:
         break
 
 conn = sqlite3.connect('pass_manager.db')
-
+ 
 
 def create_password(pass_key, service, admin_pass):
     return sha256(admin_pass.encode('utf-8') + service.lower().encode('utf-8') + pass_key.encode('utf-8')).hexdigest()[
