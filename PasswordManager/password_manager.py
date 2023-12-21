@@ -1,19 +1,22 @@
-
 import sqlite3
 from hashlib import sha256
 
 
 ADMIN_PASSWORD = "123456"
 
+# Entering the Password
 connect = input("What is your password?\n")
 
+# Verifying if password is correct
 while connect != ADMIN_PASSWORD:
     connect = input("What is your password?\n")
     if connect == "q":
         break
 
+# connection with the database "pass_manager.db"
 conn = sqlite3.connect('pass_manager.db')
 
+# create password (encode)
 def create_password(pass_key, service, admin_pass):
     return sha256(admin_pass.encode('utf-8') + service.lower().encode('utf-8') + pass_key.encode('utf-8')).hexdigest()[:15]
 
@@ -37,7 +40,9 @@ def add_password(service, admin_pass):
     conn.commit()
     return create_password(secret_key, service, admin_pass)
 
+# if the password is correct?
 if connect == ADMIN_PASSWORD:
+    # executing the creation of table keys (pass_key (text))
     try:
         conn.execute('''CREATE TABLE KEYS
             (PASS_KEY TEXT PRIMARY KEY NOT NULL);''')
@@ -49,6 +54,9 @@ if connect == ADMIN_PASSWORD:
     while True:
         print("\n"+ "*"*15)
         print("Commands:")
+
+        # Program contains 3 operations
+        # quit(q), get password(gp) and store password(sp)
         print("q = quit program")
         print("gp = get password")
         print("sp = store password")
