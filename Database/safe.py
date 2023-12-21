@@ -37,10 +37,13 @@ if connect == PASSWORD:
     while True:
         print("\n"+ "*"*15)
         print("Commands:")
+
+        # There are 3 operations
+        # quit(q), open file(o), store file(s)
         print("q = quit program")
         print("o = open file")
         print("s = store file")
-        print("*"*15)
+        print("_"*15)
         input_ = input(":")
 
         # quitting the program (break)
