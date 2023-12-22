@@ -1,3 +1,4 @@
+# importing required libraries
 import sqlite3
 from hashlib import sha256
 
@@ -32,6 +33,7 @@ def get_password(admin_pass, service):
         file_string = row[0]
     return create_password(file_string, service, admin_pass)
 
+# Adding the password to the account
 def add_password(service, admin_pass):
     secret_key = get_hex_key(admin_pass, service)
 
@@ -42,7 +44,7 @@ def add_password(service, admin_pass):
 
 # if the password is correct?
 if connect == ADMIN_PASSWORD:
-    # executing the creation of table keys (pass_key (text))
+    # executing the creation of table keys
     try:
         conn.execute('''CREATE TABLE KEYS
             (PASS_KEY TEXT PRIMARY KEY NOT NULL);''')
@@ -63,11 +65,16 @@ if connect == ADMIN_PASSWORD:
         print("*"*15)
         input_ = input(":")
 
+        # Quitting the program
         if input_ == "q":
             break
+
+        # Storing the password in the database
         if input_ == "sp":
             service = input("What is the name of the service?\n")
             print("\n" + service.capitalize() + " password created:\n" + add_password(service, ADMIN_PASSWORD))
+
+        # Getting the database
         if input_ == "gp":
             service = input("What is the name of the service?\n")
             print("\n" + service.capitalize() + " password:\n"+get_password(ADMIN_PASSWORD, service))
