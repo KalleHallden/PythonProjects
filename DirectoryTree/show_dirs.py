@@ -1,6 +1,7 @@
 # importing the required Libraries
 import os
 
+# Getting the path
 path = os.getcwd()
 
 i = 0
