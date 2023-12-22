@@ -7,22 +7,29 @@ import cv2
 # /Users/kalle/Desktop/myfile.py
 PASSWORD = "123456"
 
-connect = raw_input("What is your password?\n")
+# Password input
+connect = input("What is your password?\n")
 
+# Verifying that entered password
+# is same as the actual password
 while connect != PASSWORD:
-    connect = raw_input("What is your password?\n")
+    connect = input("What is your password?\n")
     if connect == "q":
         break
 
 if connect == PASSWORD:
     conn = sqlite3.connect('mysafe.db')
+
+    # mysafe.db has a table with format
+    # Full Name(text), name(text), extension(text), files(text)
     try:
         conn.execute('''CREATE TABLE SAFE
             (FULL_NAME TEXT PRIMARY KEY NOT NULL,
             NAME TEXT NOT NULL,
             EXTENSION TEXT NOT NULL,
             FILES TEXT NOT NULL);''')
-        print("Your safe has been created!\nWhat would you like to store in it today?")
+        print("Your safe has been created!\n")
+        print("What would you like to store in it today?")
     except:
         print("You have a safe, what would you like to do today?")
     
@@ -30,18 +37,23 @@ if connect == PASSWORD:
     while True:
         print("\n"+ "*"*15)
         print("Commands:")
+
+        # There are 3 operations
+        # quit(q), open file(o), store file(s)
         print("q = quit program")
         print("o = open file")
         print("s = store file")
-        print("*"*15)
-        input_ = raw_input(":")
+        print("_"*15)
+        input_ = input(":")
 
+        # quitting the program (break)
         if input_ == "q":
             break
+
+        # opening the file 
         if input_ == "o":
-            # open the file
-            file_type = raw_input("What is the filetype of the file you want to open?\n")
-            file_name = raw_input("What is the name of the file you want to open?\n")
+            file_type = input("What is the filetype of the file you want to open?\n")
+            file_name = input("What is the name of the file you want to open?\n")
             FILE_ = file_name + "." + file_type
 
             cursor = conn.execute("SELECT * from SAFE WHERE FULL_NAME=" + '"' + FILE_ + '"')
@@ -55,10 +67,9 @@ if connect == PASSWORD:
 
 
 
-
+        # Storing the file
         if input_ == "s":
-            # store file
-            PATH = raw_input("Type in the full path to the file you want to store.\nExample: /Users/kalle/Desktop/myfile.py\n")
+            PATH = input("Type in the full path to the file you want to store.\nExample: /Users/kalle/Desktop/myfile.py\n")
 
             FILE_TYPES = {
                 "txt": "TEXT",
