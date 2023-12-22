@@ -93,14 +93,19 @@ if connect == PASSWORD:
             except:
                 Exception()
 
-
+            # Extensions can be of two types - Image and Text
+            # Image (jpg, png, jpeg)
             if EXTENSION == "IMAGE":
                 IMAGE = cv2.imread(PATH)
                 file_string = base64.b64encode(cv2.imencode('.jpg', IMAGE)[1]).decode()
 
+            # Text (txt, java, dart, py)
             elif EXTENSION == "TEXT":
                 file_string = open(PATH, "r").read()
                 file_string = base64.b64encode(file_string)
+
+            else:
+                print("Invalid File Extension")
 
             EXTENSION = file_name.split(".")[1]
             
